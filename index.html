@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Know Thy Rep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="if_architecture-interior-06_809115.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid" id="first-container">
+            <h1 class="display-4" id="site-name"><b>Know Thy Rep</b></h1>
+        </div>
+    </div>
+    <div class="card" id="search-card">
+        <div class="card-body" id="search-card-body">
+            <div class="container" id="second-container">
+                <div class="form-group" id="group-1">
+                    <h2 class="search">Search for a U.S. Senator<img src="if_search_298865.png" alt="Search icon"></h2>
+                    <input type="text" class="form-control" id="input-senator" placeholder="Enter first and last name (e.g., 'John Doe')">
+                </div>
+                <button type="submit" class="btn btn-primary" id="senator-button">Submit</button>
+                <br>
+                <br>
+                <div class="form-group" id="group-2">
+                    <h2 class="search">Search for a U.S. Representative<img src="if_search_298865.png" alt="Search icon"></h2>
+                    <input type="text" class="form-control" id="input-rep" placeholder="Enter first and last name (i.e., 'Jane Doe')">
+                </div>
+                <button type="submit" class="btn btn-primary" id="rep-button">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card" id="info-card">
+                <div class="card-body" id="info-card-body">
+                    <h2 class="m-info">Member Information<img src="if_icon-information-circled_211679 (1).png" alt="Info icon"></h2>
+                    <div id="info-categories">
+                        <p id="f-name">First Name: </p>
+                        <p id="m-name">Middle Name: </p>
+                        <p id="l-name">Last Name: </p>
+                        <p id="state">State: </p>
+                        <p id="dob">DoB: </p>
+                        <p id="party">Party: </p>
+                        <p id="s-media">Social Media: </p>
+                        <p id="website">Website: </p>
+                        <p id="nyt">Most recent NYT article: </p>
+                        <p id="youtube">YouTube: </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" id="video-card">
+                <div class="card-body" id="video-card-body">
+                    <h2 class="vid-sel">Video Selection<img src="if_video_2561498.png" alt="Video icon"></h2>
+                    <div id="videos">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="blank-error-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This field cannot be left blank. Please enter a valid name.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="name-error-modal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>The name was entered incorrectly. Please enter a name in the valid format (e.g., "John Doe" or "Jane Doe").</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $("#senator-button").click(function () {
+            event.preventDefault();
+            console.log("Submit function working");
+            var senName = $.trim($("#input-senator.form-control").val());
+
+            if (senName === "") {
+                $("#blank-error-modal").modal("show");
+            }
+
+            if (!/^(([A-zÀ-ÿ]+[\-\']?)*([A-zÀ-ÿ]+)?\s)+([A-zÀ-ÿ]+[\-\']?)*([A-zÀ-ÿ]+)?$/.test(senName) && senName !== "") {
+                $("#input-senator.form-control").val("");
+                $("#name-error-modal").modal("show");
+            }
+        });
+
+        $("#rep-button").click(function () {
+            event.preventDefault();
+            console.log("Submit function working");
+            var repName = $.trim($("#input-rep.form-control").val());
+
+            if (repName === "") {
+                $("#blank-error-modal").modal("show");
+            }
+
+            if (!/^(([A-zÀ-ÿ]+[\-\']?)*([A-zÀ-ÿ]+)?\s)+([A-zÀ-ÿ]+[\-\']?)*([A-zÀ-ÿ]+)?$/.test(repName) && repName !== "") {
+                $("#input-rep.form-control").val("");
+                $("#name-error-modal").modal("show");
+            }
+        });
+
+    </script>
+
+
+</body>
+
+</html>
